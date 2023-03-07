@@ -1,0 +1,109 @@
+Studi Kasus => Website Toko Online Sederhana
+
+catatan :
+
+Hanya Untuk menampilkan informasi seputar produk atau jasa yang dijual seperti
+foto produk, harga, deskripsi produk, dan informasi yang kontak penjual.
+jika ada yang ingibn membeli produk, bisa langsung hubungi lewat nomor telepon
+tercantum.
+
+Frontend / tampilan 		: HTML dan CSS
+Backend / Bahasa pemrograman 	: PHP
+Databse 				: MySQL
+Web Server 				: Xampp
+Text Editor 			: VS Code
+
+User / Pengguna 
+1.Calon Pembeli
+2.Penjual / Admin
+
+CREATE TABLE `tb_admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `admin_telp` varchar(20) NOT NULL,
+  `admin_email` varchar(50) NOT NULL,
+  `admin_address` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`admin_id`, `admin_name`, `username`, `password`, `admin_telp`, `admin_email`, `admin_address`) VALUES
+(1, 'wahyu', 'admin', '21232f297a57a5a743894a0e4a801fc3', '082283632062', 'ardian.wahyusaputra17@gmail.com', 'Jl.suka karya perumahan karya abadi permai ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_category`
+--
+
+CREATE TABLE `tb_category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_product`
+--
+
+CREATE TABLE `tb_product` (
+  `product_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `product_description` text NOT NULL,
+  `product_image` varchar(100) NOT NULL,
+  `product_status` tinyint(4) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `tb_category`
+--
+ALTER TABLE `tb_category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `tb_product`
+--
+ALTER TABLE `tb_product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tb_admin`
+--
+ALTER TABLE `tb_admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_category`
+--
+ALTER TABLE `tb_category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tb_product`
+--
+ALTER TABLE `tb_product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
